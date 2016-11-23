@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.d.t.config.WebConfig;
+
 
 
 @Configuration  
@@ -14,7 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableAutoConfiguration  
 @EntityScan(basePackages="com.d.t.model.db")  
 @EnableJpaRepositories(basePackages="com.d.t.repository")  
-public class Application {
+public class Application extends WebConfig {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
