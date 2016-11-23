@@ -1,5 +1,14 @@
 package com.d.t.utils;
 
+import java.security.Key;
+import java.util.Date;
+
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+
+import com.d.t.model.ResultCode;
+import com.d.t.model.json.JwtJson;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.CompressionException;
@@ -10,17 +19,6 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-
-import java.security.Key;
-import java.util.Date;
-import java.util.UUID;
-
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
-
-import com.alibaba.fastjson.JSON;
-import com.d.t.model.ResultCode;
-import com.d.t.model.json.JwtJson;
 
 public class JwtUtil {
 	
@@ -118,11 +116,5 @@ public class JwtUtil {
 		}
 		return false;
 	}
-
-	public static void main(String[] args) {
-//		String token = JwtUtil.encode("{timon "+ UUID.randomUUID() +"}",5L);
-//		System.out.println(token);
-		System.out.println(JSON.toJSON(JwtUtil.decode("eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqVspMLFGyMjQxt7QwMjM3s9RRSq0ogAmYG4AEikuTlKyUqksyc_PzFAxSzEzMkhJNdY2SUsx0TSyTLHQtDIwTdZNSLM2MDNPSDExTDWuVagEAAAD__w.BqfIE4jC4rVdcj3QTZeKOttIk9OecvW0OB_psPgtboA")));
  
-	}
 }

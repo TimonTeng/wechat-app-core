@@ -19,24 +19,32 @@ public class SysUserServiceImpl implements ISysUserService {
 	
 	@Autowired
 	private ISysUserRepository userRepository;
+	
+	@Override
+	public List<TSysUser> findAll() {
+		List<TSysUser> list = userRepository.nativeQueryList();
+		return list;
+	}
+
 
 	@Override
 	@Transactional(readOnly = false)
 	public SysUserResJson save(SysUserReqJson json) {
-		TSysUser entity = new TSysUser();
-		entity.setAccount(json.getAccount());
-		entity.setPassword(json.getPassword());
-		entity.setPhoneNumber(json.getPhoneNumber());
-		entity.setEmail(json.getEmail());
-		entity.setAvatarIcon(json.getAvatarIcon());
-		entity.setCreateTime(new Date());
-		userRepository.save(entity);
-		
-		
-		List<TSysUser> list = userRepository.nativeQueryList();
-		System.out.println(list.size());
-		
-		return new SysUserResJson();
+		SysUserResJson res = new SysUserResJson();
+		try {
+			TSysUser entity = new TSysUser();
+			entity.setAccount(json.getAccount());
+			entity.setPassword(json.getPassword());
+			entity.setPhoneNumber(json.getPhoneNumber());
+			entity.setEmail(json.getEmail());
+			entity.setAvatarIcon(json.getAvatarIcon());
+			entity.setCreateTime(new Date());
+			userRepository.save(entity);
+			res.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
  

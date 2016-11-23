@@ -1,9 +1,13 @@
 package com.d.t.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.d.t.model.db.TSysUser;
+import com.d.t.model.json.ListResponseJson;
 import com.d.t.model.json.req.SysUserReqJson;
 import com.d.t.service.ISysUserService;
 
@@ -15,9 +19,12 @@ public class SysUserController extends BaseController {
 	private ISysUserService sysUserService;
 	
 	@RequestMapping(value="/sys/user/list")
-	public String list(){
-		System.out.println("list");
-		return null;
+	public ListResponseJson<TSysUser> list(){
+		ListResponseJson<TSysUser> res = new ListResponseJson<TSysUser>();
+		List<TSysUser> list = sysUserService.findAll();
+		res.setList(list);
+		res.success();
+		return res;
 	}
  
 	

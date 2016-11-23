@@ -1,6 +1,13 @@
 package com.d.t.model.json;
 
+import com.d.t.model.ResultCode;
+
 public class BaseResponseJson {
+	
+	public BaseResponseJson() {
+		this.code = ResultCode.FAIL_CODE;
+		this.msg = ResultCode.FAIL_DESC;
+	}
 	
 	private String code;
 	
@@ -20,6 +27,11 @@ public class BaseResponseJson {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+	
+	public void success(){
+		this.code = ResultCode.SUCCE_CODE;
+		this.msg = ResultCode.SUCCE_DESC;
 	}
 
 }
