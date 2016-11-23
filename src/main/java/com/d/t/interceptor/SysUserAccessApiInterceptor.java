@@ -18,6 +18,7 @@ public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.info(" SysUserAccessApiInterceptor.preHandle ");
+		System.out.println(" SysUserAccessApiInterceptor.preHandle ");
 		return true;
 	}
 
@@ -25,15 +26,16 @@ public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		log.info(" SysUserAccessApiInterceptor.postHandle ");
-		 
+		System.out.println(" SysUserAccessApiInterceptor.postHandle ");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		log.info(" SysUserAccessApiInterceptor.afterCompletion ");
-		 
+		System.out.println(" SysUserAccessApiInterceptor.afterCompletion ");
 	}
+
  
  
 }

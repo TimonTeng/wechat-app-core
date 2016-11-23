@@ -24,6 +24,7 @@ public class SysUserController extends BaseController {
 		List<TSysUser> list = sysUserService.findAll();
 		res.setList(list);
 		res.success();
+		System.out.println("ListResponseJson<TSysUser> list()");
 		return res;
 	}
  
