@@ -10,6 +10,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.d.t.model.ModelConstant;
+import com.d.t.model.ResultCode;
+import com.d.t.model.json.BaseResponseJson;
+import com.d.t.model.json.JwtJson;
+import com.d.t.utils.JwtUtil;
+
 public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 	
 	private final Logger log = LogManager.getLogger(getClass());
@@ -18,22 +24,32 @@ public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.info(" SysUserAccessApiInterceptor.preHandle ");
-		System.out.println(" SysUserAccessApiInterceptor.preHandle ");
-		return true;
+		String token = request.getHeader(ModelConstant.SYS_HEADER_KEY_USER_TOKEN);
+		String id = request.getHeader(ModelConstant.SYS_HEADER_KEY_USER_ID);
+		JwtJson jwt = JwtUtil.decode(token);
+		if (ResultCode.TOKEN_CODE_SUCCE.equals(jwt.getCode())
+				&& jwt.getId().equals(id)) {
+			return true;
+		}
+		BaseResponseJson res = new BaseResponseJson();
+		res.setCode(jwt.getCode());
+		res.setMsg(jwt.getMsg());
+		response.setHeader(ModelConstant.SYS_HEADER_KEY_MSG, res.toString());
+		response.sendRedirect("/error");
+//		request.getRequestDispatcher("/error").forward(request, response);
+		return false;
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		log.info(" SysUserAccessApiInterceptor.postHandle ");
-		System.out.println(" SysUserAccessApiInterceptor.postHandle ");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		log.info(" SysUserAccessApiInterceptor.afterCompletion ");
-		System.out.println(" SysUserAccessApiInterceptor.afterCompletion ");
 	}
 
  

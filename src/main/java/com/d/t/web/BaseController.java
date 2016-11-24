@@ -6,10 +6,13 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 
 import java.security.Key;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+import com.d.t.model.ModelConstant;
 import com.d.t.model.json.req.CheckTokenReqJson;
 import com.d.t.model.json.req.CreateTokenReqJson;
 
@@ -40,5 +43,9 @@ public class BaseController implements ErrorController {
 		return subject;
 	}
 	
+	@RequestMapping(value = "/error")
+	public String error(HttpServletRequest request){
+		return request.getHeader(ModelConstant.SYS_HEADER_KEY_MSG);
+	}
 
 }

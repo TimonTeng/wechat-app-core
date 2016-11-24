@@ -1,14 +1,5 @@
 package com.d.t.utils;
 
-import java.security.Key;
-import java.util.Date;
-
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
-
-import com.d.t.model.ResultCode;
-import com.d.t.model.json.JwtJson;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.CompressionException;
@@ -19,6 +10,15 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+
+import java.security.Key;
+import java.util.Date;
+
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+
+import com.d.t.model.ResultCode;
+import com.d.t.model.json.JwtJson;
 
 public class JwtUtil {
 	
@@ -31,7 +31,7 @@ public class JwtUtil {
 	 * @param expirationMillis 到期时长 (单位:分) 
 	 * @return
 	 */
-	public static String encode(String subject, long expirationMillis){
+	public static String encode(String subject, String id, long expirationMillis){
 		try {
 			SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 			byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET);
@@ -41,6 +41,7 @@ public class JwtUtil {
 			long nowMillis = System.currentTimeMillis();
 			Date issuedAt = new Date(nowMillis);
 			Date expiration = new Date(nowMillis + (MINUTE * expirationMillis));
+			builder.setId(id);
 			builder.setIssuedAt(issuedAt);
 			builder.setExpiration(expiration);
 			builder.setSubject(subject);
@@ -72,11 +73,11 @@ public class JwtUtil {
 			String subject = claims.getSubject();
 			Date issuedAt = claims.getIssuedAt();
 			Date expiration = claims.getExpiration();
-			
+			String id = claims.getId();
+			json.setId(id);
 			json.setSubject(subject);
 			json.setIssuedAt(issuedAt);
 			json.setExpiration(expiration);
-			
 			json.setCode(ResultCode.TOKEN_CODE_SUCCE);
 			json.setMsg(ResultCode.TOKEN_DESC_SUCCE);
 			

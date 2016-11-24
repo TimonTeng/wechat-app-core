@@ -11,9 +11,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new SysUserAccessApiInterceptor()).addPathPatterns("/**");
+		
+		registry.addInterceptor(new SysUserAccessApiInterceptor())
+				.addPathPatterns("/sys/**");
+		
 		super.addInterceptors(registry);
-
 	}
 
 }

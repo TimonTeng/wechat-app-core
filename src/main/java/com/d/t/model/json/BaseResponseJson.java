@@ -1,5 +1,6 @@
 package com.d.t.model.json;
 
+import com.alibaba.fastjson.JSON;
 import com.d.t.model.ResultCode;
 
 public class BaseResponseJson {
@@ -32,6 +33,11 @@ public class BaseResponseJson {
 	public void success(){
 		this.code = ResultCode.SUCCE_CODE;
 		this.msg = ResultCode.SUCCE_DESC;
+	}
+
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
 	}
 
 }

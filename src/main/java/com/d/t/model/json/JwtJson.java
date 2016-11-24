@@ -4,8 +4,10 @@ import java.util.Date;
 
 public class JwtJson extends BaseResponseJson {
 	
+	private String id;
+	
 	private String token;
-
+	
 	private Date issuedAt;
 	
 	private Date expiration;
@@ -42,6 +44,14 @@ public class JwtJson extends BaseResponseJson {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }
