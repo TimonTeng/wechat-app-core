@@ -1,4 +1,4 @@
-package com.d.t.web;
+package com.d.t.web.sys;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.d.t.service.ISysUserService;
 
 
 @RestController
-public class SysUserController extends BaseController {
+public class SysUserController extends SysBaseController {
 	
 	@Autowired
 	private ISysUserService sysUserService;
@@ -27,7 +27,6 @@ public class SysUserController extends BaseController {
 		System.out.println("ListResponseJson<TSysUser> list()");
 		return res;
 	}
- 
 	
 	@RequestMapping(value="/sys/user/get")
 	public String get(Integer userId) {

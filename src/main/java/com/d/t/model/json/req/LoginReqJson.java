@@ -2,7 +2,7 @@ package com.d.t.model.json.req;
 
 import com.d.t.model.json.BaseRequestJson;
 
-public class CreateTokenReqJson extends BaseRequestJson {
+public class LoginReqJson extends BaseRequestJson {
 	
 	private String account;
 	

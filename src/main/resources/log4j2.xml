@@ -6,7 +6,7 @@
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>  
             </PatternLayout>  
         </Console>  
-        <File name="File" fileName="/Users/zk_chs/logtest/zk_chs.log">  
+        <File name="File" fileName="zk_chs.log">  
             <PatternLayout>  
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>  
             </PatternLayout>  

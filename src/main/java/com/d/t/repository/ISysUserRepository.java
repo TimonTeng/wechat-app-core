@@ -25,5 +25,14 @@ public interface ISysUserRepository extends JpaRepository<TSysUser, Integer> {
 	 */
 	@Query(value = "select u from TSysUser u where u.id=:id")
 	public TSysUser findById(@Param("id")Integer id);
+	
+	/**
+	 * 
+	 * @param account
+	 * @param password
+	 * @return
+	 */
+	@Query(value = "select u from TSysUser u where u.account=:account and u.password=:password")
+	public TSysUser findByAccountPassword(@Param("account")String account, @Param("password")String password);
 
 }

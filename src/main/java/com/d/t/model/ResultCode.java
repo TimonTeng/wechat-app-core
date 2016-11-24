@@ -42,6 +42,11 @@ public class ResultCode {
 	public static final String TOKEN_CODE_SIGNATURE = "1005";
 	
 	/**
+	 * 非法ID
+	 */
+	public static final String TOKEN_CODE_ID = "1006";
+	
+	/**
 	 * token包含非法参数
 	 */
 	public static final String TOKEN_CODE_ILLEGALARGUMENT = "1006";
@@ -64,6 +69,6 @@ public class ResultCode {
 	
 	public static final String TOKEN_DESC_PERMISSIONDENIED = "token编译失败";
 	
-	
+	public static final String TOKEN_DESC_ID = "非法ID";
 
 }

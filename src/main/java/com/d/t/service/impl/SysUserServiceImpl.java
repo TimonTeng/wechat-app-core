@@ -16,16 +16,15 @@ import com.d.t.service.ISysUserService;
 @Service
 @Transactional
 public class SysUserServiceImpl implements ISysUserService {
-	
+
 	@Autowired
 	private ISysUserRepository userRepository;
-	
+
 	@Override
 	public List<TSysUser> findAll() {
 		List<TSysUser> list = userRepository.nativeQueryList();
 		return list;
 	}
-
 
 	@Override
 	@Transactional(readOnly = false)
@@ -47,5 +46,19 @@ public class SysUserServiceImpl implements ISysUserService {
 		return res;
 	}
 
- 
+	@Override
+	public TSysUser getUser(String account, String password) {
+		TSysUser user = userRepository.findByAccountPassword(account, password);
+		return user;
+	}
+
+	@Override
+	public boolean existUser(String account, String password) {
+		TSysUser user = getUser(account, password);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -11,4 +11,14 @@ public interface ISysUserService {
 	public SysUserResJson save(SysUserReqJson json);
 	
 	public List<TSysUser> findAll();
+	
+	public TSysUser getUser(String account, String password);
+	
+	/**
+	 * 用户是否存在
+	 * @param account
+	 * @param password
+	 * @return
+	 */
+	public boolean existUser(String account, String password);
 }

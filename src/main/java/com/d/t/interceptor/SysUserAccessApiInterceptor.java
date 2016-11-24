@@ -23,7 +23,6 @@ public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		log.info(" SysUserAccessApiInterceptor.preHandle ");
 		String token = request.getHeader(ModelConstant.SYS_HEADER_KEY_USER_TOKEN);
 		String id = request.getHeader(ModelConstant.SYS_HEADER_KEY_USER_ID);
 		JwtJson jwt = JwtUtil.decode(token);
@@ -31,12 +30,17 @@ public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 				&& jwt.getId().equals(id)) {
 			return true;
 		}
+		
 		BaseResponseJson res = new BaseResponseJson();
 		res.setCode(jwt.getCode());
 		res.setMsg(jwt.getMsg());
+		if(!jwt.getId().equals(id)){
+			res.setCode(ResultCode.TOKEN_CODE_ID);
+			res.setMsg(ResultCode.TOKEN_DESC_ID);
+		}
+
 		response.setHeader(ModelConstant.SYS_HEADER_KEY_MSG, res.toString());
-		response.sendRedirect("/error");
-//		request.getRequestDispatcher("/error").forward(request, response);
+		request.getRequestDispatcher("/error").forward(request, response);
 		return false;
 	}
 

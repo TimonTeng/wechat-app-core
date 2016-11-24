@@ -2,9 +2,11 @@ package com.d.t.model.json.res;
 
 import com.d.t.model.json.BaseResponseJson;
 
-public class CreateTokenResJson extends BaseResponseJson {
+public class LoginResJson extends BaseResponseJson {
 	
 	private String token;
+	
+	private String id;
 
 	public String getToken() {
 		return token;
@@ -12,6 +14,14 @@ public class CreateTokenResJson extends BaseResponseJson {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
