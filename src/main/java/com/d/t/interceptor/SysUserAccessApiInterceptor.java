@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +35,7 @@ public class SysUserAccessApiInterceptor implements HandlerInterceptor {
 		BaseResponseJson res = new BaseResponseJson();
 		res.setCode(jwt.getCode());
 		res.setMsg(jwt.getMsg());
-		if(!jwt.getId().equals(id)){
+		if(!StringUtils.isEmpty(id) && !jwt.getId().equals(id)){
 			res.setCode(ResultCode.TOKEN_CODE_ID);
 			res.setMsg(ResultCode.TOKEN_DESC_ID);
 		}
