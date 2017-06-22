@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
  * TRentCheckin entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "t_rent_checkin", catalog = "rent")
+@Table(name = "t_rent_checkin")
 public class TRentCheckin implements java.io.Serializable {
 
 	// Fields

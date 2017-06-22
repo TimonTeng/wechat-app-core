@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * TSysUser entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "t_sys_user", catalog = "jue")
+@Table(name = "t_sys_user")
 public class TSysUser implements java.io.Serializable {
 
 	// Fields

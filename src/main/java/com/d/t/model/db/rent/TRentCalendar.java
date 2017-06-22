@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
  * TRentCalendar entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "t_rent_calendar", catalog = "rent")
+@Table(name = "t_rent_calendar")
 public class TRentCalendar implements java.io.Serializable {
 
 	// Fields
